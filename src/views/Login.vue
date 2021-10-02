@@ -2,10 +2,10 @@
   <v-dialog transition="dialog-top-transition" max-width="600" persistent>
     <template v-slot:activator="{ on, attrs }">
       <div v-if="!user">
-        <v-btn icon v-bind="attrs" v-on="on"><v-icon>mdi-login</v-icon></v-btn>
+        <v-btn small fab  v-bind="attrs" v-on="on"><v-icon>mdi-login</v-icon></v-btn>
       </div>
       <div v-else>
-        <v-btn icon @click="signOut()"><v-icon>mdi-exit-run</v-icon></v-btn>
+        <v-btn fab small  @click="signOut()"><v-icon>mdi-exit-run</v-icon></v-btn>
       </div>
     </template>
     <template v-slot:default="dialog">

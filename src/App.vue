@@ -1,31 +1,23 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <AddCard v-if="user" /><v-spacer /><v-img
+      <v-spacer /><v-img
         src="../public/mintyID.svg"
         height="200px"
         width="500px"
       ></v-img
-      ><v-spacer /><v-btn
-        v-if="user"
-        text
-        contain
-        :to="{
-          path: '/' + user.uid,
-        }"
-        >Profile</v-btn
-      ><Login />
+      ><v-spacer />
     </v-app-bar>
     <v-main>
       <router-view />
     </v-main>
+    <SpeedDial />
   </v-app>
 </template>
 
 <script>
-import Login from "./views/Login.vue";
 import firebase from "firebase";
-import AddCard from "./components/AddCard.vue";
+import SpeedDial from "./components/SpeedDial.vue";
 export default {
   data() {
     return { user: null };
@@ -36,8 +28,7 @@ export default {
     });
   },
   components: {
-    AddCard,
-    Login,
+    SpeedDial,
   },
 };
 </script>

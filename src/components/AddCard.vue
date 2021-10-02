@@ -1,7 +1,7 @@
 <template>
   <v-dialog persistent transition="dialog-bottom-transition" max-width="600">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn fab large v-bind="attrs" v-on="on" icon
+      <v-btn fab v-bind="attrs" v-on="on" small
         ><v-icon>mdi-plus</v-icon></v-btn
       >
     </template>
