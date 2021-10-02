@@ -1,7 +1,7 @@
 <template>
   <v-dialog persistent transition="dialog-bottom-transition" max-width="600">
     <template v-slot:activator="{ on, attrs }">
-      <v-btn dark fab large v-bind="attrs" v-on="on" icon
+      <v-btn fab large v-bind="attrs" v-on="on" icon
         ><v-icon>mdi-plus</v-icon></v-btn
       >
     </template>
@@ -80,9 +80,7 @@ export default {
   },
   created() {
     firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.user = user;
-      }
+      this.user = user ? user : null;
     });
   },
 

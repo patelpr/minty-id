@@ -16,16 +16,12 @@ export default {
     }
     var uiConfig = {
       callbacks: {
-        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        signInSuccessWithAuthResult: function(authResult) {
           console.log(authResult);
-          console.log(redirectUrl);
-
-          
-          return true;
+          this.router.push(`/${authResult.user.uid}`);
         },
       },
       signInFlow: "popup",
-      signInSuccessUrl: "/user",
       signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
         firebase.auth.PhoneAuthProvider.PROVIDER_ID,

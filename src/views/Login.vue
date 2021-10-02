@@ -2,10 +2,10 @@
   <v-dialog transition="dialog-top-transition" max-width="600" persistent>
     <template v-slot:activator="{ on, attrs }">
       <div v-if="!user">
-        <v-btn text v-bind="attrs" v-on="on">Login</v-btn>
+        <v-btn icon v-bind="attrs" v-on="on"><v-icon>mdi-login</v-icon></v-btn>
       </div>
       <div v-else>
-        <v-btn text @click="signOut()">Logout</v-btn>
+        <v-btn icon @click="signOut()"><v-icon>mdi-exit-run</v-icon></v-btn>
       </div>
     </template>
     <template v-slot:default="dialog">
@@ -33,9 +33,7 @@ export default {
   },
   created() {
     firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.user = user;
-      }
+      this.user = user ? user : null;
     });
   },
   components: {
