@@ -1,5 +1,7 @@
 module.exports = {
-  transpileDependencies: [
-    'vuetify'
-  ]
-}
+  transpileDependencies: ["vuetify"],
+  // filenameHashing: false,
+  // chainWebpack: (config) => {
+  //   config.optimization.delete("splitChunks");
+  // },
+};

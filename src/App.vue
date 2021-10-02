@@ -1,32 +1,42 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app>
+    <v-app-bar color="primary" dark app>
+      <Login /><v-spacer /><v-btn v-if="user" text to="/profile"
+        >My Profile</v-btn
+      ><v-spacer /><AddCard v-if="user" />
+    </v-app-bar>
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
-<style lang="scss">
+<script>
+import Login from "./views/Login.vue";
+import firebase from "firebase";
+import AddCard from "./components/AddCard.vue";
+export default {
+  data() {
+    return { user: null };
+  },
+  created() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        this.user = user;
+      }
+    });
+  },
+  components: {
+    AddCard,
+    Login,
+  },
+};
+</script>
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>
