@@ -18,7 +18,9 @@
       </v-btn>
     </template>
     <Login />
-    <AddCard />
+    <v-btn fab v-if="user" :to="{ name: 'Add' }" small
+      ><v-icon>mdi-plus</v-icon></v-btn
+    >
     <v-btn
       v-if="user"
       fab
@@ -32,7 +34,6 @@
 
 <script>
 import Login from "../views/Login.vue";
-import AddCard from "../components/AddCard.vue";
 import firebase from "firebase";
 export default {
   data() {
@@ -48,7 +49,6 @@ export default {
   },
   components: {
     Login,
-    AddCard,
   },
 };
 </script>

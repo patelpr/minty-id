@@ -9,9 +9,11 @@
       ><v-spacer />
     </v-app-bar>
     <v-main>
-      <router-view />
+      <v-container>
+        <router-view />
+        <SpeedDial />
+      </v-container>
     </v-main>
-    <SpeedDial />
   </v-app>
 </template>
 

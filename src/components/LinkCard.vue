@@ -2,13 +2,15 @@
   <v-card :href="link.link" target="_blank">
     <v-container>
       <v-row
-        ><v-col cols="2" justify-space-between
-          ><v-icon>{{ link.icon }}</v-icon></v-col
+        ><v-col cols="2"
+          ><v-icon x-large>{{ link.icon }}</v-icon></v-col
         ><v-divider vertical></v-divider
-        ><v-col cols="10"
-          ><v-card-title primary-title> {{ link.name }} </v-card-title
-          ><v-card-subtitle>{{ link.link }}</v-card-subtitle></v-col
+        ><v-col cols="8"
+          ><v-card-title> {{ link.name }} </v-card-title
+          ><v-card-title>{{ link.link }}</v-card-title></v-col
         >
+        <v-divider vertical></v-divider>
+        <v-col cols="2"> QR CODE </v-col>
       </v-row>
     </v-container>
   </v-card>

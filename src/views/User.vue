@@ -1,7 +1,7 @@
 <template>
   <v-container
     ><v-row v-for="link in links" :key="link.id"
-      ><v-spacer /> <v-col cols="12" md="4"><LinkCard :link="link" /> </v-col
+      ><v-spacer /> <v-col cols="12" md="8"><LinkCard :link="link" /> </v-col
       ><v-spacer /></v-row
   ></v-container>
 </template>

@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Website from "../views/Website.vue";
 import User from "../views/User.vue";
+import AddCard from "../components/AddCard.vue";
 // import firebase from "firebase";
 
 Vue.use(VueRouter);
@@ -19,6 +20,11 @@ const routes = [
     path: "/:id",
     name: "User",
     component: User,
+  },
+  {
+    path: "/add",
+    name: "Add",
+    component: AddCard,
   },
 ];
 
