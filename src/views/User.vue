@@ -1,9 +1,25 @@
 <template>
-  <v-container
-    ><v-row v-for="link in links" :key="link.id"
-      ><v-spacer /> <v-col cols="12" md="8"><LinkCard :link="link" /> </v-col
-      ><v-spacer /></v-row
-  ></v-container>
+  <v-container>
+    <div v-if="links.length >= 1">
+      <v-row v-for="link in links" :key="link.id"
+        ><v-spacer /> <v-col cols="12" md="8"><LinkCard :link="link" /> </v-col
+        ><v-spacer
+      /></v-row>
+    </div>
+    <div v-else>
+      <v-row :to="{ name: 'Add' }">
+        <v-spacer></v-spacer>
+        <v-col cols="12" md="6">
+          <v-card
+            ><v-card-title primary-title>
+              Add Some links Here!
+            </v-card-title>
+          </v-card>
+        </v-col>
+        <v-spacer></v-spacer>
+      </v-row>
+    </div>
+  </v-container>
 </template>
 
 <script>
@@ -31,8 +47,7 @@ export default {
           .collection("users")
           .doc(this.id)
           .collection("links")
-          .get()
-          .then((querySnapshot) => {
+          .onSnapshot((querySnapshot) => {
             querySnapshot.forEach((doc) => {
               let tempDoc = doc.data();
               tempDoc.id = doc.id;

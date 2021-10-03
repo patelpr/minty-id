@@ -12,9 +12,6 @@ const routes = [
     path: "/",
     name: "Home",
     component: Website,
-    meta: {
-      guest: true,
-    },
   },
   {
     path: "/:id",
