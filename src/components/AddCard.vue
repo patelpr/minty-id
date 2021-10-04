@@ -323,7 +323,7 @@ export default {
         console.error(error);
       } finally {
         this.link = {};
-        this.$router.push("/user" + firebase.auth().currentUser.uid);
+        this.$router.push("/user/" + firebase.auth().currentUser.uid);
       }
     },
   },

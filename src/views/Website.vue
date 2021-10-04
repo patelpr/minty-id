@@ -13,8 +13,8 @@ export default {
   data() {
     return {
       options: {
-        width: 175,
-        height: 175,
+        width: 200,
+        height: 200,
         type: "svg",
         data: "http://mintyid.netlify.app",
         image: "",
