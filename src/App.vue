@@ -1,12 +1,7 @@
 <template>
   <v-app>
     <v-app-bar app>
-      <v-spacer /><v-img
-        src="../public/mintyID.svg"
-        height="200px"
-        width="500px"
-      ></v-img
-      ><v-spacer />
+      <v-img src="../public/mintyID.svg" height="125px"></v-img>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -35,11 +30,12 @@ export default {
 };
 </script>
 <style>
+@import url("https://fonts.googleapis.com/css2?family=Marko+One&display=swap");
 body {
   overflow: hidden;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Marko One", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

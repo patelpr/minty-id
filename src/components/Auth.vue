@@ -15,18 +15,9 @@ export default {
       ui = new firebaseui.auth.AuthUI(firebase.auth());
     }
     var uiConfig = {
-      callbacks: {
-        signInSuccessWithAuthResult: function(authResult) {
-          console.log(authResult);
-          this.router.push(`/${authResult.user.uid}`);
-        },
-      },
+      signInSuccessUrl: "/",
       signInFlow: "popup",
-      signInOptions: [
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-      ],
+      signInOptions: [firebase.auth.GoogleAuthProvider.PROVIDER_ID],
     };
     ui.start("#firebaseui-auth-container", uiConfig);
   },

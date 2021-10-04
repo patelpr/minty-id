@@ -1,25 +1,18 @@
 <template>
-  <v-dialog transition="dialog-top-transition" max-width="600" persistent>
-    <template v-slot:activator="{ on, attrs }">
-      <div v-if="!user">
-        <v-btn small fab  v-bind="attrs" v-on="on"><v-icon>mdi-login</v-icon></v-btn>
-      </div>
-      <div v-else>
-        <v-btn fab small  @click="signOut()"><v-icon>mdi-exit-run</v-icon></v-btn>
-      </div>
-    </template>
-    <template v-slot:default="dialog">
-      <v-card>
-        <v-toolbar color="primary" dark>Login</v-toolbar>
+  <v-container>
+    <v-row>
+      <v-col cols="12">
+        <v-card class="pb-15">
+          <v-toolbar color="#7ed957"
+            ><v-spacer /> <v-card-title><b>LOGIN</b></v-card-title
+            ><v-spacer
+          /></v-toolbar>
 
-        <Auth />
-
-        <v-card-actions class="justify-end">
-          <v-btn text @click="dialog.value = false">Close</v-btn>
-        </v-card-actions>
-      </v-card>
-    </template>
-  </v-dialog>
+          <Auth />
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -34,6 +27,7 @@ export default {
   created() {
     firebase.auth().onAuthStateChanged((user) => {
       this.user = user ? user : null;
+      user && this.$router.push("/");
     });
   },
   components: {

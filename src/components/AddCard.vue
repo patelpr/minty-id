@@ -2,13 +2,16 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card class="mb-15">
-          <v-toolbar color="primary"
+        <v-card class="mb-15" flat>
+          <v-toolbar dark color="#1f4563" flat
             ><v-spacer></v-spacer>
-            <h2>Add A Link</h2>
+            <h2 v-if="user">Add A Link</h2>
+            <h2 v-else>Make a QR Code</h2>
             <v-spacer></v-spacer>
           </v-toolbar>
           <v-row>
+            <v-spacer></v-spacer>
+
             <v-col cols="12" md="6">
               <v-container>
                 <v-card-subtitle>
@@ -18,7 +21,7 @@
                 <v-divider class=" mb-4" />
 
                 <v-row>
-                  <v-col cols="4">
+                  <v-col cols="12" sm="4">
                     <template>
                       <v-row align="center">
                         <v-col cols="12">
@@ -39,7 +42,7 @@
                       </v-row>
                     </template>
                   </v-col>
-                  <v-col cols="4">
+                  <v-col cols="12" sm="4">
                     <template>
                       <v-row align="center">
                         <v-col cols="12">
@@ -53,7 +56,7 @@
                       </v-row>
                     </template>
                   </v-col>
-                  <v-col cols="4">
+                  <v-col cols="12" sm="4">
                     <template>
                       <v-row align="center">
                         <v-col cols="12">
@@ -69,7 +72,7 @@
                   </v-col>
                 </v-row>
                 <v-row>
-                  <v-col cols="4">
+                  <v-col cols="12" sm="4">
                     <v-menu offset-y>
                       <template v-slot:activator="{ on }">
                         <v-btn
@@ -86,7 +89,7 @@
                     </v-menu>
                     <v-card-text>Dots Color</v-card-text>
                   </v-col>
-                  <v-col cols="4">
+                  <v-col cols="12" sm="4">
                     <v-menu offset-y>
                       <template v-slot:activator="{ on }">
                         <v-btn
@@ -103,7 +106,7 @@
                     </v-menu>
                     <v-card-text>Corner Square Color</v-card-text>
                   </v-col>
-                  <v-col cols="4">
+                  <v-col cols="12" sm="4">
                     <v-menu offset-y>
                       <template v-slot:activator="{ on }">
                         <v-btn
@@ -121,15 +124,23 @@
                     <v-card-text> Corner Dots Color</v-card-text>
                   </v-col>
                 </v-row>
-              </v-container> </v-col
-            ><v-col cols="12" md="6">
+              </v-container>
+            </v-col>
+            <v-spacer></v-spacer>
+            <v-col cols="12" md="6" v-if="user">
               <v-form class="pa-5">
                 <v-text-field
                   label="Link URL"
                   persistent-hint
                   hint="http://facebook.com/account"
                   v-model="link.link"
-                  @blur="(e) => ((link.options.data = link.link), log(e))"
+                  @blur="
+                    (e) => (
+                      (link.options.data =
+                        link.link || 'http://mintyid.netlify.app'),
+                      log(e)
+                    )
+                  "
                   :rules="[
                     (v) => !!v || 'Need a link!',
                     (v) =>
@@ -139,17 +150,10 @@
                   required
                 >
                 </v-text-field>
-                <!-- 
-                <v-text-field
-                  label="Link Logo"
-                  persistent-hint
-                  hint="Get the favicon link to the website you are adding"
-                  v-model="link.options.image"
-                >
-                </v-text-field> -->
 
                 <v-text-field
                   label="Link Name"
+                  hint="Facebook / Twitter / TikTok..etc"
                   v-model="link.name"
                   :rules="[(v) => !!v || 'What is this link called?']"
                   required
@@ -171,8 +175,10 @@
               </v-form>
             </v-col>
           </v-row>
-          <v-card-actions>
-            <v-btn color="primary" @click="addLink()">Add</v-btn>
+          <v-card-actions v-if="user">
+            <v-btn color="#7ed957" block :disabled="!user" @click="addLink()"
+              ><b>Add</b></v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-col>
@@ -181,13 +187,9 @@
 </template>
 
 <script>
-/* eslint-disable */
-
-import ColorPicker from "./ColorPicker.vue";
 import firebase from "firebase";
 import QRCodeStyling from "qr-code-styling";
 import QR from "./qr.vue";
-import axios from "axios";
 
 export default {
   data() {
@@ -213,7 +215,7 @@ export default {
             crossOrigin: "anonymous",
           },
           dotsOptions: {
-            color: "#41b583",
+            color: "#7ed957",
             // gradient: {
             //   type: 'linear', // 'radial'
             //   rotation: 0,
@@ -231,8 +233,8 @@ export default {
             // },
           },
           cornersSquareOptions: {
-            color: "#35495E",
-            type: "extra-rounded" /*'dot' 'square' 'extra-rounded' */,
+            color: "#1f4563",
+            type: "square" /*'dot' 'square' 'extra-rounded' */,
             // gradient: {
             //   type: 'linear', // 'radial'
             //   rotation: 180,
@@ -240,7 +242,7 @@ export default {
             // },
           },
           cornersDotOptions: {
-            color: "#35495E",
+            color: "#1f4563",
             type: "dot" /* 'dot' 'square' */,
             // gradient: {
             //   type: 'linear', // 'radial'
@@ -273,7 +275,6 @@ export default {
   },
   components: {
     QR,
-    ColorPicker,
   },
   methods: {
     log(e) {
