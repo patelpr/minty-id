@@ -39,6 +39,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: rgb(12.159729%, 27.059937%, 38.819885%);
+  background-color: #1f4563;
 }
 </style>

@@ -19,18 +19,17 @@
         </v-icon>
       </v-btn>
     </template>
-    <v-btn v-if="!user" small fab to="/login"><v-icon>mdi-login</v-icon></v-btn>
-    <v-btn v-else fab small @click="signOut()"
+    <v-btn v-if="user" fab small @click="signOut()"
       ><v-icon>mdi-exit-run</v-icon></v-btn
     >
-    <v-btn fab v-if="user" to="/" small><v-icon>mdi-plus</v-icon></v-btn>
+    <v-btn fab to="/" small><v-icon>mdi-link</v-icon></v-btn>
 
     <v-btn
       small
       v-if="user"
       fab
       :to="{
-        path: '/' + user.uid,
+        path: '/user/' + user.uid,
       }"
       ><v-icon>mdi-account</v-icon></v-btn
     >

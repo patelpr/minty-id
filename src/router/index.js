@@ -2,7 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Website from "../views/Website.vue";
 import User from "../views/User.vue";
-import Login from "../views/Login.vue";
+
 // import firebase from "firebase";
 
 Vue.use(VueRouter);
@@ -18,11 +18,7 @@ const routes = [
     name: "User",
     component: User,
   },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login,
-  },
+
 ];
 
 const router = new VueRouter({

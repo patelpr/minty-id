@@ -5,8 +5,16 @@
         ><v-col cols="12" lg="1"
           ><v-icon x-large>{{ link.icon }}</v-icon>
           <v-divider></v-divider>
-          <v-btn @click="deleteLink(link.id)" icon>
-            <v-icon>mdi-trash-can</v-icon>
+          <v-btn
+            @click="deleteLink(link.id)"
+            color="red"
+            fab
+            top
+            right
+            small
+            absolute
+          >
+            <v-icon>mdi-delete-circle</v-icon>
           </v-btn>
           <!-- <v-btn to="/edit/" icon> <v-icon>mdi-pencil</v-icon> </v-btn> -->
 

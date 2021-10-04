@@ -2,7 +2,7 @@
   <v-container>
     <v-row>
       <v-col cols="12">
-        <v-card class="mb-15" flat>
+        <v-card class="pb-7 mb-15" flat>
           <v-toolbar dark color="#1f4563" flat
             ><v-spacer></v-spacer>
             <h2 v-if="user">Add A Link</h2>
@@ -18,6 +18,30 @@
                   <b>Customize your QR</b>
                 </v-card-subtitle>
                 <QR :options="link.options" />
+                <v-text-field
+                  label="Link URL"
+                  persistent-hint
+                  hint="http://facebook.com/account"
+                  v-model="link.link"
+                  @blur="
+                    (e) => (
+                      (link.options.data =
+                        link.link || 'http://mintyid.netlify.app'),
+                      log(e)
+                    )
+                  "
+                  v-if="!user"
+                  filled
+                  outlined
+                  :rules="[
+                    (v) => !!v || 'Need a link!',
+                    (v) =>
+                      /^http:\/\/|^https:\/\//gi.test(v) ||
+                      'Needs to have http:// at the beginning',
+                  ]"
+                  required
+                >
+                </v-text-field>
                 <v-divider class=" mb-4" />
 
                 <v-row>
@@ -180,6 +204,10 @@
               ><b>Add</b></v-btn
             >
           </v-card-actions>
+          <div v-else>
+            <Auth />
+            <h4>You will need to sign it to save it!</h4>
+          </div>
         </v-card>
       </v-col>
     </v-row>
@@ -187,6 +215,8 @@
 </template>
 
 <script>
+import Auth from "../components/Auth.vue";
+
 import firebase from "firebase";
 import QRCodeStyling from "qr-code-styling";
 import QR from "./qr.vue";
@@ -275,6 +305,7 @@ export default {
   },
   components: {
     QR,
+    Auth,
   },
   methods: {
     log(e) {
@@ -292,7 +323,7 @@ export default {
         console.error(error);
       } finally {
         this.link = {};
-        this.$router.push("/");
+        this.$router.push("/user" + firebase.auth().currentUser.uid);
       }
     },
   },
