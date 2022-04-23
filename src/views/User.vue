@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     async getLinks() {
-        this.links=[]
+      this.links = [];
       try {
         await firebase
           .firestore()
