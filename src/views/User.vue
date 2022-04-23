@@ -24,7 +24,7 @@
 <script>
 import firebase from "firebase";
 import LinkCard from "../components/LinkCard.vue";
-import QR from "../components/QR.vue";
+import QR from "../components/qr.vue";
 export default {
   data() {
     return {

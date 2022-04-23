@@ -209,7 +209,7 @@ import Auth from "../components/Auth.vue";
 
 import firebase from "firebase";
 import QRCodeStyling from "qr-code-styling";
-import QR from "./QR.vue";
+import QR from "./qr.vue";
 
 export default {
   data() {

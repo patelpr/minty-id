@@ -35,7 +35,7 @@
 
 <script>
 import firebase from "firebase";
-import QR from "./QR.vue";
+import QR from "./qr.vue";
 export default {
   data() {
     return {
