@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <QR :options="options" />
+    <QR :options="options" :down="true" />
     <div v-if="links.length >= 1">
       <v-row v-for="link in links" :key="link.id"
         ><v-spacer /> <v-col cols="12" md="8"><LinkCard :link="link" /> </v-col
@@ -12,9 +12,7 @@
         <v-spacer></v-spacer>
         <v-col cols="12" md="6">
           <v-card to="/"
-            ><v-card-title primary-title>
-              Add Some links Here!
-            </v-card-title>
+            ><v-card-title primary-title> Add Some links Here! </v-card-title>
           </v-card>
         </v-col>
         <v-spacer></v-spacer>
@@ -26,7 +24,7 @@
 <script>
 import firebase from "firebase";
 import LinkCard from "../components/LinkCard.vue";
-import QR from "../components/qr.vue";
+import QR from "../components/QR.vue";
 export default {
   data() {
     return {
@@ -35,7 +33,7 @@ export default {
       options: {
         width: 300,
         height: 300,
-        type: "svg",
+        type: "canvas",
         data: "http://mintyid.netlify.app",
         image: "/mintyqrcode.png",
         margin: 2,
@@ -52,39 +50,18 @@ export default {
         },
         dotsOptions: {
           color: "#fff",
-          // gradient: {
-          //   type: 'linear', // 'radial'
-          //   rotation: 0,
-          //   colorStops: [{ offset: 0, color: '#8688B2' }, { offset: 1, color: '#77779C' }]
-          // },
-          type:
-            "rounded" /* 'rounded' 'dots' 'classy' 'classy-rounded' 'square' 'extra-rounded' */,
+          type: "rounded" /* 'rounded' 'dots' 'classy' 'classy-rounded' 'square' 'extra-rounded' */,
         },
         backgroundOptions: {
           color: "#0009",
-          // gradient: {
-          //   type: 'linear', // 'radial'
-          //   rotation: 0,
-          //   colorStops: [{ offset: 0, color: '#ededff' }, { offset: 1, color: '#e6e7ff' }]
-          // },
         },
         cornersSquareOptions: {
           color: "#fff",
           type: "square" /*'dot' 'square' 'extra-rounded' */,
-          // gradient: {
-          //   type: 'linear', // 'radial'
-          //   rotation: 180,
-          //   colorStops: [{ offset: 0, color: '#25456e' }, { offset: 1, color: '#4267b2' }]
-          // },
         },
         cornersDotOptions: {
           color: "#fff",
           type: "dot" /* 'dot' 'square' */,
-          // gradient: {
-          //   type: 'linear', // 'radial'
-          //   rotation: 180,
-          //   colorStops: [{ offset: 0, color: '#00266e' }, { offset: 1, color: '#4060b3' }]
-          // },
         },
       },
     };
@@ -99,6 +76,7 @@ export default {
   },
   methods: {
     async getLinks() {
+        this.links=[]
       try {
         await firebase
           .firestore()

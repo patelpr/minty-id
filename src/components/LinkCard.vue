@@ -35,7 +35,7 @@
 
 <script>
 import firebase from "firebase";
-import QR from "./qr.vue";
+import QR from "./QR.vue";
 export default {
   data() {
     return {
@@ -48,6 +48,7 @@ export default {
   },
   created() {
     firebase.auth().onAuthStateChanged((user) => {
+      console.log(this.link);
       this.user = user ? user : null;
     });
   },

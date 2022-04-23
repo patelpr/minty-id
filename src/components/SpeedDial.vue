@@ -3,7 +3,7 @@
     v-model="fab"
     bottom
     right
-    absolute
+    fixed
     open-on-hover
     open-delay="10"
     direction="left"

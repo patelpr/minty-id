@@ -1,12 +1,39 @@
 <template>
   <v-app>
-    <v-app-bar app>
+    <v-app-bar dense>
+      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
       <v-img src="../public/mintyID.svg" height="125px"></v-img>
     </v-app-bar>
+
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list nav dense>
+        <v-list-item-group active-class="deep-blue--text text--accent-4">
+          <v-list-item href="/#/">
+            <v-list-item-icon>
+              <v-icon>mdi-home</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Home</v-list-item-title>
+          </v-list-item>
+
+          <v-list-item :href="'/#/user/' + user.uid">
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Account</v-list-item-title>
+          </v-list-item>
+          <v-divider></v-divider>
+          <v-list-item v-if="user" @click="signOut">
+            <v-list-item-icon>
+              <v-icon>mdi-account</v-icon>
+            </v-list-item-icon>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
+        </v-list-item-group>
+      </v-list>
+    </v-navigation-drawer>
     <v-main>
       <v-container>
         <router-view />
-        <SpeedDial />
       </v-container>
     </v-main>
   </v-app>
@@ -14,19 +41,22 @@
 
 <script>
 import firebase from "firebase";
-import SpeedDial from "./components/SpeedDial.vue";
 export default {
   data() {
-    return { user: null };
+    return { user: null, drawer: false };
   },
   created() {
     firebase.auth().onAuthStateChanged((user) => {
       this.user = user ? user : null;
     });
   },
-  components: {
-    SpeedDial,
+  methods: {
+    signOut() {
+      firebase.auth().signOut();
+      this.$router.push("/");
+    },
   },
+  components: {},
 };
 </script>
 <style>
