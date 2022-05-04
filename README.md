@@ -18,6 +18,6 @@ Click and select the features on how you would like your QR code to be styled.
 If you signed in you will be able to save it to your account!  
 
 
-### To replicate this project Please follow the instructions:  
+### To replicate this project, Please git bash the following commands:  
 git clone https://github.com/patelpr/minty-id.git minty-id  
 cd minty-id && npm i && npm run serve  
