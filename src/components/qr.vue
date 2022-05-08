@@ -1,6 +1,6 @@
 <template>
   <span>
-    <div id="qr-code" ref="qrCode"></div>
+    <div class="m-10" id="qr-code" ref="qrCode"></div>
     <div>
       <v-btn class="mb-3" v-if="down" v-on:click="download">Download</v-btn>
     </div>

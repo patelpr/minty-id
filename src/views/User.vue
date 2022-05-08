@@ -36,11 +36,11 @@ export default {
         type: "canvas",
         data: "http://mintyid.netlify.app",
         image: "/mintyqrcode.png",
-        margin: 2,
+        margin: 0,
         qrOptions: {
           typeNumber: 0,
           mode: "Byte",
-          errorCorrectionLevel: "H",
+          errorCorrectionLevel: "Q",
         },
         imageOptions: {
           hideBackgroundDots: true,
@@ -48,20 +48,60 @@ export default {
           margin: 0,
           crossOrigin: "anonymous",
         },
+        dotsOptionsHelper: {
+          colorType: { single: true, gradient: false },
+          gradient: {
+            linear: true,
+            radial: false,
+            color1: "#6a1a4c",
+            color2: "#6a1a4c",
+            rotation: "0",
+          },
+        },
         dotsOptions: {
-          color: "#fff",
+          color: "#1f4563",
           type: "rounded" /* 'rounded' 'dots' 'classy' 'classy-rounded' 'square' 'extra-rounded' */,
         },
         backgroundOptions: {
-          color: "#0009",
+          color: "#ffffff",
         },
         cornersSquareOptions: {
-          color: "#fff",
+          color: "#1f4563",
           type: "square" /*'dot' 'square' 'extra-rounded' */,
         },
+        cornersSquareOptionsHelper: {
+          colorType: { single: true, gradient: false },
+          gradient: {
+            linear: true,
+            radial: false,
+            color1: "#000000",
+            color2: "#000000",
+            rotation: "0",
+          },
+        },
+        cornersDotOptionsHelper: {
+          colorType: { single: true, gradient: false },
+          gradient: {
+            linear: true,
+            radial: false,
+            color1: "#000000",
+            color2: "#000000",
+            rotation: "0",
+          },
+        },
         cornersDotOptions: {
-          color: "#fff",
+          color: "#1f4563",
           type: "dot" /* 'dot' 'square' */,
+        },
+        backgroundOptionsHelper: {
+          colorType: { single: true, gradient: false },
+          gradient: {
+            linear: true,
+            radial: false,
+            color1: "#ffffff",
+            color2: "#ffffff",
+            rotation: "0",
+          },
         },
       },
     };
@@ -72,6 +112,7 @@ export default {
   },
   created() {
     this.id = this.$route.params.id;
+    this.options.data = "https://minty.id/#/user/" + this.id;
     this.getLinks();
   },
   methods: {
