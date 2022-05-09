@@ -16,8 +16,6 @@
           >
             <v-icon>mdi-delete-circle</v-icon>
           </v-btn>
-          <!-- <v-btn to="/edit/" icon> <v-icon>mdi-pencil</v-icon> </v-btn> -->
-
           <v-btn :href="link.link" target="_blank" icon>
             <v-icon>mdi-arrow-right-bold</v-icon>
           </v-btn></v-col
@@ -27,7 +25,7 @@
           ><v-card-title>{{ link.link }}</v-card-title></v-col
         >
         <v-divider vertical></v-divider>
-        <v-col cols="12" lg="4"> <QR :options="link.options" /> </v-col>
+        <v-col cols="12" lg="4"> <QR :options="link.options" :down="true"/> </v-col>
       </v-row>
     </v-container>
   </v-card>

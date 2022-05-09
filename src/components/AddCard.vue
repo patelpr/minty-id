@@ -303,7 +303,7 @@ export default {
         "mdi-reddit",
         "mdi-twitch",
         "mdi-twitter",
-        "mdi-youtube",
+        "mdi-youtube","mdi-slack","mdi-skype"
       ],
     };
   },

@@ -1,5 +1,14 @@
 <template>
   <v-container>
+    <v-row>
+      <v-spacer></v-spacer>
+      <v-col cols="12" md="6">
+        <v-card
+          ><v-card-title primary-title> Your Account's QR Code </v-card-title>
+        </v-card>
+      </v-col>
+      <v-spacer></v-spacer>
+    </v-row>
     <QR :options="options" :down="true" />
     <div v-if="links.length >= 1">
       <v-row v-for="link in links" :key="link.id"
